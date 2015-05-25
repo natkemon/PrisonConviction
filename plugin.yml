@@ -1,4 +1,5 @@
 name: Prison Conviction
+author: [Jermss, Swiftlee]
 version: 1
 main: me.Jermss.PrisonConviction.Main
 commands:
