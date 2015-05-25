@@ -1,0 +1,6 @@
+name: Prison Conviction
+version: 1
+main: me.Jermss.PrisonConviction.Main
+commands:
+  conviction:
+    description: Convict descriptions assigned to every player
