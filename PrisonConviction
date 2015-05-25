@@ -1,0 +1,45 @@
+package me.Jermss.PrisonConviction;
+   
+import java.util.logging.Logger;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+   
+    public class PrisonConviction extends JavaPlugin implements Listener {
+   
+        Logger log;
+   
+        public void onEnable(){
+            getServer().getPluginManager().registerEvents(this, this);
+            log = this.getLogger();
+            log.info("PrisonConviction 1.00 has been enabled.");
+        }
+   
+        public void onDisable(){
+            log.info("PrisonConviction 1.00 has been disabled.");
+        }
+ 
+    @EventHandler(priority = EventPriority.HIGHEST)
+        public void onPlayerJoinEvent(PlayerJoinEvent event) {
+          String playerName = event.getPlayer().getDisplayName();
+        if (event.getPlayer().hasPlayedBefore())
+            event.getPlayer().sendMessage("welcomeback");
+            else {
+              this.getServer().broadcastMessage(ChatColor.DARK_GREEN + "Welcome + playerName + to UnionMC" )
+          }
+        }
+ 
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        Player player = (Player) sender;
+        if(cmd.getName().equalsIgnoreCase("conviction")){
+          player.sendMessage(ChatColor.AQUA + getPlayer() + "You have been convicted for:" getConviction()");
+          }
+          return false;
+    }
+}
