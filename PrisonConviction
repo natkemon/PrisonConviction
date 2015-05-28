@@ -1,6 +1,10 @@
-package me.Jermss.PrisonConviction;
+package net.unionmc.prisonconvict;
    
+import java.io.File;
 import java.util.logging.Logger;
+
+import net.unionmc.prisonconvict.util.ListStore;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,9 +18,19 @@ import org.bukkit.plugin.java.JavaPlugin;
     public class PrisonConviction extends JavaPlugin implements Listener {
    
         Logger log;
+        public ListStore convictedPlayers;
    
         public void onEnable(){
             getServer().getPluginManager().registerEvents(this, this);
+            
+            String pluginFolder = this.getDataFolder().getAbsolutePath();
+            
+            (new File(pluginFolder)).mkdirs();
+            
+            this.convictedPlayers = new ListStore(new File(pluginFolder + File.separator + "convicted-players.txt"));
+            
+            this.convictedPlayers.load();
+            
             log = this.getLogger();
             log.info("PrisonConviction 1.00 has been enabled.");
         }
@@ -24,13 +38,32 @@ import org.bukkit.plugin.java.JavaPlugin;
         public void onDisable(){
             log.info("PrisonConviction 1.00 has been disabled.");
         }
+        
+        public void getConviction (String string, Player p)
+        {
+        	
+        	if (!p.hasPlayedBefore())
+        	{
+        		
+        		//code here
+        		
+        	}
+        	
+        }
  
     @EventHandler(priority = EventPriority.HIGHEST)
-        public void onPlayerJoinEvent(PlayerJoinEvent event) {
-          String playerName = event.getPlayer().getDisplayName();
-        if (event.getPlayer().hasPlayedBefore())
-            event.getPlayer().sendMessage("welcomeback");
-            else {
+        
+    public void onPlayerJoinEvent(PlayerJoinEvent e)
+    {
+    	
+          String playerName = e.getPlayer().getDisplayName();
+          
+        if (e.getPlayer().hasPlayedBefore())
+        	
+        	e.getPlayer().sendMessage("welcomeback");
+        
+            else 
+            {
               this.getServer().broadcastMessage(ChatColor.DARK_GREEN + "Welcome" + playerName + "to UnionMC. You have been convicted for:" + getConviction)
           }
         }
@@ -38,7 +71,7 @@ import org.bukkit.plugin.java.JavaPlugin;
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         Player player = (Player) sender;
         if(cmd.getName().equalsIgnoreCase("conviction")){
-          player.sendMessage(ChatColor.AQUA + getPlayer() + "You have been convicted for:" getConviction()");
+          player.sendMessage(ChatColor.AQUA + "You have been convicted for:" + getConviction());
           }
           return false;
     }
