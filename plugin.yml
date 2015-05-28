@@ -1,7 +1,7 @@
 name: Prison Conviction
-authors: [Jermss, Swiftlee]
+authors: [Jermss, Swiftlee, AaronL98]
 version: 1
-main: me.Jermss.PrisonConviction.Main
+main: me.unionmc.prisonconvict.Main
 commands:
   conviction:
     description: Convict descriptions assigned to every player
